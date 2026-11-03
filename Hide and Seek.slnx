@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Hide and Seek Tests/Hide and Seek Tests.csproj" />
+  <Project Path="Hide and Seek/Hide and Seek.csproj" />
+</Solution>
