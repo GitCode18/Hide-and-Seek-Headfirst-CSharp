@@ -18,7 +18,7 @@ namespace Hide_and_Seek
             var garage = new LocationWithHidingPlace("Garage", "under the car");
             var hallway = new Location("Hallway");
             var kitchen = new LocationWithHidingPlace("Kitchen", "under the sink");
-            var bathroom = new LocationWithHidingPlace("Bathroom", "in the cabinet");
+            var bathroom = new LocationWithHidingPlace("Bathroom", "behind the door");
             var livingRoom = new LocationWithHidingPlace("Living Room", "behind the couch");
             var landing = new Location("Landing");
             var masterBedroom = new LocationWithHidingPlace("Master Bedroom", "under the bed");
@@ -27,7 +27,7 @@ namespace Hide_and_Seek
             var nursery = new LocationWithHidingPlace("Nursery", "behind the crib");
             var pantry = new LocationWithHidingPlace("Pantry", "in the food pile");
             var kidsRoom = new LocationWithHidingPlace("Kids Room", "in the closet");
-            var attic = new LocationWithHidingPlace("Attic", "in an empty box");
+            var attic = new LocationWithHidingPlace("Attic", "in an large box");
 
             //add the new house locations starting from Entry
             Entry.AddExit(Direction.Out, garage);
