@@ -95,11 +95,29 @@ public class GameController
     /// </summary>
     /// <param name="input">Input to parse</param>
     /// <returns>The results of parsing the input</returns>
-    /// <exception cref="NotImplementedException"></exception>
     public string ParseInput(string input)
     {
-        bool validInput = Enum.TryParse(input, out Direction d);
-        if (validInput)
+        bool validDirection = Enum.TryParse(input, out Direction d);
+        if (input.ToLower().Equals("check"))
+        {
+            if (CurrentLocation is LocationWithHidingPlace)
+            {
+                var hidingLocation = (CurrentLocation as LocationWithHidingPlace);
+                var opponentsFound = hidingLocation.CheckHidingPlace();
+                if(opponentsFound.Count == 0)
+                {
+                    return "Nobody was hiding " + hidingLocation.HidingPlace;
+                }
+                else
+                    return $"You found {opponentsFound.Count()} opponents hiding " +
+                        $"{hidingLocation.HidingPlace}";
+            }
+            else
+            {
+                return $"There is no hiding place in the {CurrentLocation.Name}";
+            }
+        }
+        else if (validDirection)
         {
             bool moveWorked = Move(d);
             if (moveWorked)
