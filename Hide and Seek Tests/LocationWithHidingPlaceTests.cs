@@ -2,6 +2,7 @@
 
 namespace Hide_and_Seek_Tests
 {
+    [TestClass]
     public sealed class LocationWithHidingPlaceTests
     {
         [TestMethod]

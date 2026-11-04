@@ -15,6 +15,11 @@
         /// <param name="opponent">The opponent to add</param>
         public void Hide(Opponent opponent) => currentHiders.Add(opponent);
 
-        public List<Opponent> CheckHidingPlace() => currentHiders;
+        public List<Opponent> CheckHidingPlace()
+        {
+            var hiders = currentHiders;
+            currentHiders = new List<Opponent>();
+            return hiders;
+        }
     }
 }

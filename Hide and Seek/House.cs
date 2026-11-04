@@ -1,4 +1,6 @@
-﻿namespace Hide_and_Seek
+﻿using System.Runtime.InteropServices.Marshalling;
+
+namespace Hide_and_Seek
 {
     public class House
     {
@@ -13,19 +15,19 @@
             Entry = new Location("Entry");
 
             //create the rest of the house locations
-            var garage = new Location("Garage");
+            var garage = new LocationWithHidingPlace("Garage", "under the car");
             var hallway = new Location("Hallway");
-            var kitchen = new Location("Kitchen");
-            var bathroom = new Location("Bathroom");
-            var livingRoom = new Location("Living Room");
+            var kitchen = new LocationWithHidingPlace("Kitchen", "under the sink");
+            var bathroom = new LocationWithHidingPlace("Bathroom", "in the cabinet");
+            var livingRoom = new LocationWithHidingPlace("Living Room", "behind the couch");
             var landing = new Location("Landing");
-            var masterBedroom = new Location("Master Bedroom");
-            var masterBath = new Location("Master Bath");
-            var secondBathroom = new Location("Second Bathroom");
-            var nursery = new Location("Nursery");
-            var pantry = new Location("Pantry");
-            var kidsRoom = new Location("Kids Room");
-            var attic = new Location("Attic");
+            var masterBedroom = new LocationWithHidingPlace("Master Bedroom", "under the bed");
+            var masterBath = new LocationWithHidingPlace("Master Bath", "behind the shower curtain");
+            var secondBathroom = new LocationWithHidingPlace("Second Bathroom", "in the cabinet");
+            var nursery = new LocationWithHidingPlace("Nursery", "behind the crib");
+            var pantry = new LocationWithHidingPlace("Pantry", "in the food pile");
+            var kidsRoom = new LocationWithHidingPlace("Kids Room", "in the closet");
+            var attic = new LocationWithHidingPlace("Attic", "in an empty box");
 
             //add the new house locations starting from Entry
             Entry.AddExit(Direction.Out, garage);
@@ -57,6 +59,17 @@
             locationDictionary.Add(pantry.Name, pantry);
             locationDictionary.Add(kidsRoom.Name, kidsRoom);
             locationDictionary.Add(attic.Name, attic);
+        }
+
+        public static void ClearHidingPlaces()
+        {
+            foreach(Location location in locationDictionary.Values)
+            {
+                if(location is LocationWithHidingPlace)
+                {
+                    (location as LocationWithHidingPlace).currentHiders.Clear();
+                }
+            }
         }
 
         public static Location GetLocationByName(string s) =>
