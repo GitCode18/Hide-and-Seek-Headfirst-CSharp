@@ -27,7 +27,7 @@ namespace Hide_and_Seek
             var nursery = new LocationWithHidingPlace("Nursery", "behind the crib");
             var pantry = new LocationWithHidingPlace("Pantry", "in the food pile");
             var kidsRoom = new LocationWithHidingPlace("Kids Room", "in the closet");
-            var attic = new LocationWithHidingPlace("Attic", "in an large box");
+            var attic = new LocationWithHidingPlace("Attic", "in a large box");
 
             //add the new house locations starting from Entry
             Entry.AddExit(Direction.Out, garage);

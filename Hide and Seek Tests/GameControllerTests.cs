@@ -14,6 +14,7 @@ namespace Hide_and_Seek_Tests
         }
 
         [TestMethod]
+        [DoNotParallelize]
         public void TestMovement()
         {
             //perform some moves and verify that they worked
@@ -36,6 +37,7 @@ namespace Hide_and_Seek_Tests
         }
 
         [TestMethod]
+        [DoNotParallelize]
         public void TestParseInput()
         {
             var initialStatus = gameController.Status;
@@ -66,6 +68,7 @@ namespace Hide_and_Seek_Tests
         }
 
         [TestMethod]
+        [DoNotParallelize]
         public void TestParseCheck()
         {
             Assert.IsFalse(gameController.GameOver);
@@ -96,12 +99,12 @@ namespace Hide_and_Seek_Tests
             //we hid Joe in the garage so validate ParseInput's return value and the properties
             Assert.AreEqual("You found 1 opponent hiding under the car",
                 gameController.ParseInput("check"));
-            Assert.AreEqual("You are in the Garage. You see the following Exits:" +
+            Assert.AreEqual("You are in the Garage. You see the following exits:" +
                 Environment.NewLine + " - the Entry is In" +
-                Environment.NewLine + "Someone could hide behind the car" +
+                Environment.NewLine + "Someone could hide under the car" +
                 Environment.NewLine + "You have found 1 of 5 opponents: Joe",
                 gameController.Status);
-            Assert.AreEqual("4: Which direction do you want to go (or type 'check': ",
+            Assert.AreEqual("4: Which direction do you want to go (or type 'check'): ",
                 gameController.Prompt);
             Assert.AreEqual(4, gameController.MoveNumber);
 
@@ -118,11 +121,11 @@ namespace Hide_and_Seek_Tests
             //check the kitchen to make sure nobody is hiding there
             gameController.ParseInput("South");
             gameController.ParseInput("Northwest");
-            Assert.AreEqual("You found 2 opponents hiding next to the stove",
+            Assert.AreEqual("You found 2 opponents hiding under the sink",
                 gameController.ParseInput("check"));
             Assert.AreEqual("You are in the Kitchen. You see the following exits:" +
                 Environment.NewLine + " - the Hallway is to the Southeast" +
-                Environment.NewLine + "Someone could hide next to the stove" +
+                Environment.NewLine + "Someone could hide under the sink" +
                 Environment.NewLine + "You have found 3 of 5 opponents: Joe, Bob, Jimmy",
                 gameController.Status);
             Assert.AreEqual("11: Which direction do you want to go (or type 'check'): ",

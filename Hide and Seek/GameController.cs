@@ -66,9 +66,10 @@ public class GameController
             }
 
             //add how many opponents have been found
+            result += Environment.NewLine;
             result += (foundOpponents.Count() != 0) ?
-                Environment.NewLine + $"You have found {foundOpponents.Count()} of " +
-                $"{Opponents.Count()} opponents" 
+                $"You have found {foundOpponents.Count()} of " +
+                $"{Opponents.Count()} opponents: " + String.Join(", ", foundOpponents)
                 : "You have not found any opponents";
 
             return result;
@@ -113,6 +114,7 @@ public class GameController
     /// <returns>The results of parsing the input</returns>
     public string ParseInput(string input)
     {
+        MoveNumber++;
         bool validDirection = Enum.TryParse(input, out Direction d);
         if (input.ToLower().Equals("check"))
         {
@@ -120,13 +122,21 @@ public class GameController
             {
                 var hidingLocation = (CurrentLocation as LocationWithHidingPlace);
                 var opponentsFound = hidingLocation.CheckHidingPlace();
-                if(opponentsFound.Count == 0)
+                if (opponentsFound.Count == 0)
                 {
                     return "Nobody was hiding " + hidingLocation.HidingPlace;
                 }
+                else if (opponentsFound.Count == 1)
+                {
+                    foundOpponents.AddRange(opponentsFound);
+                    return $"You found 1 opponent hiding " + hidingLocation.HidingPlace;
+                }
                 else
+                {
+                    foundOpponents.AddRange(opponentsFound);
                     return $"You found {opponentsFound.Count()} opponents hiding " +
                         $"{hidingLocation.HidingPlace}";
+                }
             }
             else
             {
