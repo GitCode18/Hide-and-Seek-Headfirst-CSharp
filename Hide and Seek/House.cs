@@ -61,6 +61,9 @@ namespace Hide_and_Seek
             locationDictionary.Add(attic.Name, attic);
         }
 
+        /// <summary>
+        /// Removes all hiders from all LocationWithHidingPlace instances
+        /// </summary>
         public static void ClearHidingPlaces()
         {
             foreach(Location location in locationDictionary.Values)

@@ -93,6 +93,7 @@ namespace Hide_and_Seek_Tests
         [TestMethod]
         public void TestHidingPlaces()
         {
+            //check that the LocationWithHidingPlace objects successfully initialized
             Assert.IsInstanceOfType(House.GetLocationByName("Garage"), typeof(LocationWithHidingPlace));
             Assert.IsInstanceOfType(House.GetLocationByName("Kitchen"), typeof(LocationWithHidingPlace));
             Assert.IsInstanceOfType(House.GetLocationByName("Living Room"), typeof(LocationWithHidingPlace));
@@ -111,6 +112,7 @@ namespace Hide_and_Seek_Tests
         [TestMethod]
         public void TestClearHidingPlaces()
         {
+            //add some hiders to some rooms and then check if clearing them worked
             var garage = House.GetLocationByName("Garage") as LocationWithHidingPlace;
             garage.Hide(new Opponent("Opponent1"));
 
