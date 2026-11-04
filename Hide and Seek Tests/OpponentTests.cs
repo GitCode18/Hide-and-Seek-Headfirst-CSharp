@@ -6,6 +6,7 @@ namespace Hide_and_Seek_Tests
     public sealed class OpponentTests
     {
         [TestMethod]
+        [DoNotParallelize]
         public void TestOpponentHiding()
         {
             var opponent1 = new Opponent("Opponent1");

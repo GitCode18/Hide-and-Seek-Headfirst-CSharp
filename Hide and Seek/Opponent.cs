@@ -23,6 +23,9 @@
                 }
             }
 
+            //perform the actual hiding action
+            (currentLocation as LocationWithHidingPlace).Hide(this);
+
             //write the location used to Debug
             System.Diagnostics.Debug.WriteLine($"{Name} is hiding " +
                 $"{(currentLocation as LocationWithHidingPlace).HidingPlace} in the {currentLocation
