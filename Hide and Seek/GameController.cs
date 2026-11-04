@@ -52,10 +52,26 @@ public class GameController
                 .Select(pair =>
                 pair.Value.Name + " is " + pair.Value.DirectionDesc(pair.Key));
 
-            return $"You are in the {CurrentLocation.Name}. " +
+            //describe current location and exits
+            string result = $"You are in the {CurrentLocation.Name}. " +
             $"You see the following exits:" +
             Environment.NewLine + " - the " +
             String.Join(Environment.NewLine + $" - the ", exits.ToList());
+
+            //if someone can hide in this location
+            var hidingLocation = CurrentLocation as LocationWithHidingPlace;
+            if (hidingLocation != null)
+            {
+                result += Environment.NewLine + "Someone could hide " + hidingLocation.HidingPlace;
+            }
+
+            //add how many opponents have been found
+            result += (foundOpponents.Count() != 0) ?
+                Environment.NewLine + $"You have found {foundOpponents.Count()} of " +
+                $"{Opponents.Count()} opponents" 
+                : "You have not found any opponents";
+
+            return result;
         }
     }
 
